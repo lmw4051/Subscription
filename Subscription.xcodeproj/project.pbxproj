@@ -42,6 +42,7 @@
 		6311FCE2292B91E300538F98 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCE1292B91E300538F98 /* LottieView.swift */; };
 		6311FCE5292B921300538F98 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6311FCE4292B921300538F98 /* Lottie */; };
 		6311FCE7292B936500538F98 /* Noted-Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 6311FCE6292B936500538F98 /* Noted-Loading.json */; };
+		6311FCE9292B965900538F98 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCE8292B965900538F98 /* CustomAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		6311FCDF292B91CF00538F98 /* VerificationLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationLoadingView.swift; sourceTree = "<group>"; };
 		6311FCE1292B91E300538F98 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		6311FCE6292B936500538F98 /* Noted-Loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Noted-Loading.json"; sourceTree = "<group>"; };
+		6311FCE8292B965900538F98 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +333,7 @@
 			children = (
 				6311FCDD292B903B00538F98 /* PromptText.swift */,
 				6311FCE1292B91E300538F98 /* LottieView.swift */,
+				6311FCE8292B965900538F98 /* CustomAlert.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				6311FC70292B7D8B00538F98 /* SubscriptionApp.swift in Sources */,
 				6311FCB3292B811400538F98 /* ViewExtension.swift in Sources */,
 				6311FCC8292B88F100538F98 /* VerificationButton.swift in Sources */,
+				6311FCE9292B965900538F98 /* CustomAlert.swift in Sources */,
 				6311FCDB292B8B2600538F98 /* BuildConfiguration.swift in Sources */,
 				6311FCB0292B809800538F98 /* VerificationTopView.swift in Sources */,
 				6311FCD4292B8AC200538F98 /* RequestError.swift in Sources */,

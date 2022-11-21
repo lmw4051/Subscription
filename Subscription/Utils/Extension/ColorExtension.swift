@@ -9,6 +9,9 @@ import SwiftUI
 
 extension Color {
   public static let verifyButtonColor = Color(hex: "#FF3557", alpha: 1.0)  
+  public static let alertBgColor = Color(hex: "#212121", alpha: 1.0)
+  public static let alertDoneBtnColor = Color(hex: "#FF3557", alpha: 1.0)
+  public static let alertInvalidColor = Color(hex: "#A8293F", alpha: 1.0)
   
   init(hex: String, alpha: CGFloat = 1.0) {
     var hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)

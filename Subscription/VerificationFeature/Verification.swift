@@ -18,6 +18,7 @@ struct Verification: ReducerProtocol {
     var isVerifyButtonDisabled = true
     var isCallingAPI: Bool = false
     var prompt: String = ""
+    var customAlert: CustomAlert.State = CustomAlert.State()
   }
   
   enum Action: BindableAction, Equatable {
@@ -25,10 +26,14 @@ struct Verification: ReducerProtocol {
     case verifyButtonTapped
     case callVerifyReceiptAPI
     case verifyReceiptResponse(TaskResult<VerifyReceipt>)
+    case customAlert(CustomAlert.Action)
   }
   
   var body: some ReducerProtocol<State, Action> {
     BindingReducer()
+    Scope(state: \.customAlert, action: /Action.customAlert) {
+      CustomAlert()
+    }
     Reduce { state, action in
       switch action {
       case .binding(\.$subscriptionID):
@@ -67,12 +72,29 @@ struct Verification: ReducerProtocol {
 
       case .verifyReceiptResponse(.success(let response)):
         state.isCallingAPI = false
-        print(response)
+        
+        if response.valid {
+          state.customAlert = CustomAlert.State(
+            showAlert: true,
+            isValid: response.valid
+          )
+        }
         return .none
 
-      case .verifyReceiptResponse(.failure(let response)):
+      case .verifyReceiptResponse(.failure):
         state.isCallingAPI = false
-        print(response)
+        
+        state.customAlert = CustomAlert.State(
+          showAlert: true,
+          isValid: false
+        )
+        return .none
+        
+      case .customAlert(.doneButtonTapped):
+        state.customAlert.showAlert = false
+        return .none
+        
+      case .customAlert:
         return .none
       }
     }
@@ -176,6 +198,13 @@ struct VerificationView: View {
             .offset(y: 80)
           }
         }
+        
+        CustomAlertView(
+          store: self.store.scope(
+            state: \.customAlert,
+            action: Verification.Action.customAlert
+          )
+        )
       }
       .background(.black)
       .preferredColorScheme(.dark)
