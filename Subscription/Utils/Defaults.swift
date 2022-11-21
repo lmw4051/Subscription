@@ -11,4 +11,5 @@ struct Defaults {
   static let screenSize: CGSize = UIScreen.main.bounds.size
   static let subscriptionTextFieldHeight: CGFloat = 20
   static let verifyButtonHeight: CGFloat = 56
+  static let lottieViewSize: CGFloat = 60
 }

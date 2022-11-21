@@ -22,6 +22,7 @@ struct Verification: ReducerProtocol {
   
   enum Action: BindableAction, Equatable {
     case binding(BindingAction<Verification.State>)
+    case verifyButtonTapped
     case callVerifyReceiptAPI
     case verifyReceiptResponse(TaskResult<VerifyReceipt>)
   }
@@ -42,6 +43,14 @@ struct Verification: ReducerProtocol {
         
       case .binding:
         return .none
+        
+      case .verifyButtonTapped:
+        if state.isVerifyButtonDisabled {
+          state.prompt = "Subscription ID is Empty"
+          return .none
+        } else {
+          return Effect(value: .callVerifyReceiptAPI)
+        }
         
       case .callVerifyReceiptAPI:
         state.isCallingAPI = true
@@ -98,7 +107,11 @@ struct VerificationView: View {
                 PromptText(text: viewStore.prompt)
               }
               
-              VerificationButton(store: self.store, text: "Verify")              
+              if viewStore.isCallingAPI {
+                VerificationLoadingView()
+              } else {
+                VerificationButton(store: self.store, text: "Verify")
+              }
             }
             .padding([.leading, .trailing], 24)
             
@@ -127,14 +140,17 @@ struct VerificationView: View {
                   focused: viewStore.binding(\.$isSubscriptionTFFocused)
                 )
                 .frame(
-                  width: Defaults.screenSize.width * 0.44
+                  width: viewStore.isCallingAPI ?
+                  Defaults.screenSize.width * 0.56
+                  : Defaults.screenSize.width * 0.44
                 )
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
                 
                 VerificationButton(store: self.store, text: "Verify")
                   .frame(
-                    width: Defaults.screenSize.width * 0.11
+                    width: viewStore.isCallingAPI ?
+                    0 : Defaults.screenSize.width * 0.11
                   )
                   .onTapGesture {
                     self.endEditing()
@@ -148,6 +164,10 @@ struct VerificationView: View {
                 Spacer()
               }
               .padding([.leading, .trailing], 24)
+              
+              if viewStore.isCallingAPI {
+                VerificationLoadingView()
+              }
             }
             .padding(
               [.leading, .trailing],
