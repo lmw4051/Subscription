@@ -24,6 +24,9 @@
 		6311FCB0292B809800538F98 /* VerificationTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCAF292B809800538F98 /* VerificationTopView.swift */; };
 		6311FCB3292B811400538F98 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCB2292B811400538F98 /* ViewExtension.swift */; };
 		6311FCB5292B814500538F98 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCB4292B814500538F98 /* Defaults.swift */; };
+		6311FCB8292B82BB00538F98 /* VerificationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCB7292B82BB00538F98 /* VerificationTitle.swift */; };
+		6311FCBE292B82EB00538F98 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6311FCBC292B82EB00538F98 /* Rubik-Regular.ttf */; };
+		6311FCBF292B82EB00538F98 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6311FCBD292B82EB00538F98 /* Rubik-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 		6311FCAF292B809800538F98 /* VerificationTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationTopView.swift; sourceTree = "<group>"; };
 		6311FCB2292B811400538F98 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		6311FCB4292B814500538F98 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		6311FCB7292B82BB00538F98 /* VerificationTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationTitle.swift; sourceTree = "<group>"; };
+		6311FCBC292B82EB00538F98 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
+		6311FCBD292B82EB00538F98 /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				6311FC6F292B7D8B00538F98 /* SubscriptionApp.swift */,
+				6311FCB9292B82C900538F98 /* Sources */,
 				6311FCB1292B80C700538F98 /* Utils */,
 				6311FCA6292B7F3800538F98 /* Coordinator */,
 				6311FCA1292B7EFF00538F98 /* AppFeature */,
@@ -181,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				6311FCAF292B809800538F98 /* VerificationTopView.swift */,
+				6311FCB7292B82BB00538F98 /* VerificationTitle.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -200,6 +208,31 @@
 				6311FCB2292B811400538F98 /* ViewExtension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		6311FCB9292B82C900538F98 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				6311FCBA292B82D200538F98 /* CustomFonts */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		6311FCBA292B82D200538F98 /* CustomFonts */ = {
+			isa = PBXGroup;
+			children = (
+				6311FCBB292B82DB00538F98 /* Rubik */,
+			);
+			path = CustomFonts;
+			sourceTree = "<group>";
+		};
+		6311FCBB292B82DB00538F98 /* Rubik */ = {
+			isa = PBXGroup;
+			children = (
+				6311FCBD292B82EB00538F98 /* Rubik-Light.ttf */,
+				6311FCBC292B82EB00538F98 /* Rubik-Regular.ttf */,
+			);
+			path = Rubik;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +349,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6311FC77292B7D8B00538F98 /* Preview Assets.xcassets in Resources */,
+				6311FCBF292B82EB00538F98 /* Rubik-Light.ttf in Resources */,
+				6311FCBE292B82EB00538F98 /* Rubik-Regular.ttf in Resources */,
 				6311FC74292B7D8B00538F98 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +385,7 @@
 				6311FC70292B7D8B00538F98 /* SubscriptionApp.swift in Sources */,
 				6311FCB3292B811400538F98 /* ViewExtension.swift in Sources */,
 				6311FCB0292B809800538F98 /* VerificationTopView.swift in Sources */,
+				6311FCB8292B82BB00538F98 /* VerificationTitle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

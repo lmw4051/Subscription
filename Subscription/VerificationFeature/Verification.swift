@@ -33,6 +33,15 @@ struct VerificationView: View {
         if UIDevice.current.userInterfaceIdiom == .phone {
           VStack(spacing: 0) {
             VerificationTopView()
+            
+            Spacer()
+              .frame(height: 15.38)
+                        
+            VStack(spacing: 24) {
+              VerificationTitle(text: "Subscription Verification")
+            }
+            .padding([.leading, .trailing], 24)
+            
             Spacer()
           }
         } else if UIDevice.current.userInterfaceIdiom == .pad {
@@ -43,6 +52,19 @@ struct VerificationView: View {
               Spacer()
                 .frame(height: Defaults.screenSize.height * 0.5)
             }
+            
+            VStack(spacing: 24) {
+              Spacer()
+                .frame(height: 16)
+              
+              VerificationTitle(text: "Subscription Verification")
+                .padding(.leading, 24)
+            }
+            .padding(
+              [.leading, .trailing],
+              Defaults.screenSize.width * 0.2
+            )
+            .offset(y: 80)
           }
         }
       }
