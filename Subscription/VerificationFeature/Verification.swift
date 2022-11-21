@@ -10,7 +10,6 @@ import ComposableArchitecture
 
 struct Verification: ReducerProtocol {
   @Dependency(\.apiClient) var apiClient
-  @Dependency(\.mainQueue) var mainQueue
   
   struct State: Equatable {
     @BindableState var isSubscriptionTFFocused = false

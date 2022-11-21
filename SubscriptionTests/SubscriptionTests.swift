@@ -5,32 +5,40 @@
 //  Created by David Lee on 11/21/22.
 //
 
+import ComposableArchitecture
 import XCTest
 @testable import Subscription
 
+@MainActor
 final class SubscriptionTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+  func testSubscriptionID() async {
+    let store = TestStore(
+      initialState: Verification.State(),
+      reducer: Verification()
+    )
+    
+    await store.send(.set(\.$subscriptionID, "")) {
+      $0.isVerifyButtonDisabled = true
+      $0.prompt = "Subscription ID is Empty"
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    await store.send(.set(\.$subscriptionID, "123")) {
+      $0.isVerifyButtonDisabled = false
+      $0.prompt = ""
+      $0.subscriptionID = "123"
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+  }
+  
+  func testVerifyReceiptButton() async {
+    let store = TestStore(
+      initialState: Verification.State(),
+      reducer: Verification()
+    )
+    
+    await store.send(.verifyButtonTapped) {
+      if $0.isVerifyButtonDisabled {
+        $0.prompt = "Subscription ID is Empty"
+      }
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
+  }
 }
