@@ -29,7 +29,25 @@ struct VerificationView: View {
   
   var body: some View {
     WithViewStore(store) { viewStore in
-      Text("Verification")
+      ZStack {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+          VStack(spacing: 0) {
+            VerificationTopView()
+            Spacer()
+          }
+        } else if UIDevice.current.userInterfaceIdiom == .pad {
+          ZStack {
+            VStack(spacing: 0) {
+              VerificationTopView()
+              
+              Spacer()
+                .frame(height: Defaults.screenSize.height * 0.5)
+            }
+          }
+        }
+      }
+      .background(.black)
+      .preferredColorScheme(.dark)
     }
   }
 }
