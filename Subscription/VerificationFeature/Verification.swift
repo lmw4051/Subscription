@@ -9,14 +9,21 @@ import SwiftUI
 import ComposableArchitecture
 
 struct Verification: ReducerProtocol {
+  @Dependency(\.apiClient) var apiClient
+  @Dependency(\.mainQueue) var mainQueue
+  
   struct State: Equatable {
     @BindableState var isSubscriptionTFFocused = false
     @BindableState var subscriptionID: String = ""
     var isVerifyButtonDisabled = true
+    var isCallingAPI: Bool = false
+    var prompt: String = ""
   }
   
   enum Action: BindableAction, Equatable {
     case binding(BindingAction<Verification.State>)
+    case callVerifyReceiptAPI
+    case verifyReceiptResponse(TaskResult<VerifyReceipt>)
   }
   
   var body: some ReducerProtocol<State, Action> {
@@ -26,12 +33,37 @@ struct Verification: ReducerProtocol {
       case .binding(\.$subscriptionID):
         if state.subscriptionID == "" {
           state.isVerifyButtonDisabled = true
+          state.prompt = "Subscription ID is Empty"
         } else {
           state.isVerifyButtonDisabled = false
+          state.prompt = ""
         }
         return .none
         
       case .binding:
+        return .none
+        
+      case .callVerifyReceiptAPI:
+        state.isCallingAPI = true
+
+        let body = VerifyReceiptPostRequestBody(
+          originalTransactionId: state.subscriptionID
+        )
+
+        return .task {
+          .verifyReceiptResponse(
+            await apiClient.verifyReceipt(body)
+          )
+        }
+
+      case .verifyReceiptResponse(.success(let response)):
+        state.isCallingAPI = false
+        print(response)
+        return .none
+
+      case .verifyReceiptResponse(.failure(let response)):
+        state.isCallingAPI = false
+        print(response)
         return .none
       }
     }
@@ -54,13 +86,17 @@ struct VerificationView: View {
             VStack(spacing: 24) {
               VerificationTitle(text: "Subscription Verification")
               
-              VerificationTextField(
-                fieldName: "Subscription ID",
-                text: viewStore.binding(\.$subscriptionID),
-                focused: viewStore.binding(\.$isSubscriptionTFFocused)
-              )
-              .autocapitalization(.none)
-              .disableAutocorrection(true)
+              VStack(alignment: .leading) {
+                VerificationTextField(
+                  fieldName: "Subscription ID",
+                  text: viewStore.binding(\.$subscriptionID),
+                  focused: viewStore.binding(\.$isSubscriptionTFFocused)
+                )
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+                
+                PromptText(text: viewStore.prompt)
+              }
               
               VerificationButton(store: self.store, text: "Verify")              
             }
@@ -105,6 +141,12 @@ struct VerificationView: View {
                   }
               }
               .frame(height: Defaults.verifyButtonHeight)
+              .padding([.leading, .trailing], 24)
+              
+              HStack {
+                PromptText(text: viewStore.prompt)
+                Spacer()
+              }
               .padding([.leading, .trailing], 24)
             }
             .padding(

@@ -14,7 +14,10 @@ struct VerificationButton: View {
   
   var body: some View {
     WithViewStore(self.store) { viewStore in
-      Button {        
+      Button {
+        if !viewStore.isVerifyButtonDisabled {
+          viewStore.send(.callVerifyReceiptAPI)
+        }
         hideKeyboard()
       } label: {
         Text(text)

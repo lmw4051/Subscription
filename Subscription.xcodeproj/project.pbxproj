@@ -31,6 +31,13 @@
 		6311FCC6292B85B000538F98 /* CustomTextFieldBorderedViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCC5292B85B000538F98 /* CustomTextFieldBorderedViewModifier.swift */; };
 		6311FCC8292B88F100538F98 /* VerificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCC7292B88F100538F98 /* VerificationButton.swift */; };
 		6311FCCA292B896F00538F98 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCC9292B896F00538F98 /* ColorExtension.swift */; };
+		6311FCCD292B8A9000538F98 /* VerifyReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCCC292B8A9000538F98 /* VerifyReceipt.swift */; };
+		6311FCD2292B8AB200538F98 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCD1292B8AB200538F98 /* RequestMethod.swift */; };
+		6311FCD4292B8AC200538F98 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCD3292B8AC200538F98 /* RequestError.swift */; };
+		6311FCD6292B8AD000538F98 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCD5292B8AD000538F98 /* APIService.swift */; };
+		6311FCD8292B8AEA00538F98 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCD7292B8AEA00538F98 /* APIClient.swift */; };
+		6311FCDB292B8B2600538F98 /* BuildConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCDA292B8B2600538F98 /* BuildConfiguration.swift */; };
+		6311FCDE292B903B00538F98 /* PromptText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6311FCDD292B903B00538F98 /* PromptText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +82,13 @@
 		6311FCC5292B85B000538F98 /* CustomTextFieldBorderedViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldBorderedViewModifier.swift; sourceTree = "<group>"; };
 		6311FCC7292B88F100538F98 /* VerificationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationButton.swift; sourceTree = "<group>"; };
 		6311FCC9292B896F00538F98 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		6311FCCC292B8A9000538F98 /* VerifyReceipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyReceipt.swift; sourceTree = "<group>"; };
+		6311FCD1292B8AB200538F98 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
+		6311FCD3292B8AC200538F98 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		6311FCD5292B8AD000538F98 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		6311FCD7292B8AEA00538F98 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		6311FCDA292B8B2600538F98 /* BuildConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildConfiguration.swift; sourceTree = "<group>"; };
+		6311FCDD292B903B00538F98 /* PromptText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +143,12 @@
 			isa = PBXGroup;
 			children = (
 				6311FC6F292B7D8B00538F98 /* SubscriptionApp.swift */,
+				6311FCD9292B8B1E00538F98 /* Configuration */,
+				6311FCCE292B8A9D00538F98 /* Networking */,
+				6311FCCB292B8A8400538F98 /* Models */,
 				6311FCC2292B859D00538F98 /* Modifiers */,
 				6311FCB9292B82C900538F98 /* Sources */,
+				6311FCDC292B902E00538F98 /* Helpers */,
 				6311FCB1292B80C700538F98 /* Utils */,
 				6311FCA6292B7F3800538F98 /* Coordinator */,
 				6311FCA1292B7EFF00538F98 /* AppFeature */,
@@ -253,6 +271,57 @@
 				6311FCC5292B85B000538F98 /* CustomTextFieldBorderedViewModifier.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		6311FCCB292B8A8400538F98 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6311FCCC292B8A9000538F98 /* VerifyReceipt.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6311FCCE292B8A9D00538F98 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				6311FCCF292B8AA400538F98 /* Base */,
+				6311FCD0292B8AA600538F98 /* Services */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		6311FCCF292B8AA400538F98 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				6311FCD1292B8AB200538F98 /* RequestMethod.swift */,
+				6311FCD3292B8AC200538F98 /* RequestError.swift */,
+				6311FCD5292B8AD000538F98 /* APIService.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		6311FCD0292B8AA600538F98 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6311FCD7292B8AEA00538F98 /* APIClient.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		6311FCD9292B8B1E00538F98 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				6311FCDA292B8B2600538F98 /* BuildConfiguration.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		6311FCDC292B902E00538F98 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6311FCDD292B903B00538F98 /* PromptText.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,13 +471,20 @@
 				6311FCAA292B7F4600538F98 /* Screen.swift in Sources */,
 				6311FCA8292B7F4200538F98 /* Coordinator.swift in Sources */,
 				6311FCCA292B896F00538F98 /* ColorExtension.swift in Sources */,
+				6311FCD8292B8AEA00538F98 /* APIClient.swift in Sources */,
 				6311FCC6292B85B000538F98 /* CustomTextFieldBorderedViewModifier.swift in Sources */,
 				6311FCA5292B7F1400538F98 /* AppDelegate.swift in Sources */,
+				6311FCD2292B8AB200538F98 /* RequestMethod.swift in Sources */,
 				6311FCA3292B7F0B00538F98 /* AppView.swift in Sources */,
+				6311FCCD292B8A9000538F98 /* VerifyReceipt.swift in Sources */,
 				6311FC70292B7D8B00538F98 /* SubscriptionApp.swift in Sources */,
 				6311FCB3292B811400538F98 /* ViewExtension.swift in Sources */,
 				6311FCC8292B88F100538F98 /* VerificationButton.swift in Sources */,
+				6311FCDB292B8B2600538F98 /* BuildConfiguration.swift in Sources */,
 				6311FCB0292B809800538F98 /* VerificationTopView.swift in Sources */,
+				6311FCD4292B8AC200538F98 /* RequestError.swift in Sources */,
+				6311FCDE292B903B00538F98 /* PromptText.swift in Sources */,
+				6311FCD6292B8AD000538F98 /* APIService.swift in Sources */,
 				6311FCB8292B82BB00538F98 /* VerificationTitle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
