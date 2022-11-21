@@ -10,16 +10,30 @@ import ComposableArchitecture
 
 struct Verification: ReducerProtocol {
   struct State: Equatable {
-    
+    @BindableState var isSubscriptionTFFocused = false
+    @BindableState var subscriptionID: String = ""
+    var isVerifyButtonDisabled = true
   }
   
-  enum Action: Equatable {
-    
+  enum Action: BindableAction, Equatable {
+    case binding(BindingAction<Verification.State>)
   }
   
   var body: some ReducerProtocol<State, Action> {
+    BindingReducer()
     Reduce { state, action in
-        .none
+      switch action {
+      case .binding(\.$subscriptionID):
+        if state.subscriptionID == "" {
+          state.isVerifyButtonDisabled = true
+        } else {
+          state.isVerifyButtonDisabled = false
+        }
+        return .none
+        
+      case .binding:
+        return .none
+      }
     }
   }
 }
@@ -39,6 +53,14 @@ struct VerificationView: View {
                         
             VStack(spacing: 24) {
               VerificationTitle(text: "Subscription Verification")
+              
+              VerificationTextField(
+                fieldName: "Subscription ID",
+                text: viewStore.binding(\.$subscriptionID),
+                focused: viewStore.binding(\.$isSubscriptionTFFocused)
+              )
+              .autocapitalization(.none)
+              .disableAutocorrection(true)
             }
             .padding([.leading, .trailing], 24)
             
@@ -59,6 +81,21 @@ struct VerificationView: View {
               
               VerificationTitle(text: "Subscription Verification")
                 .padding(.leading, 24)
+              
+              HStack(spacing: 24) {
+                VerificationTextField(
+                  fieldName: "Subscription ID",
+                  text: viewStore.binding(\.$subscriptionID),
+                  focused: viewStore.binding(\.$isSubscriptionTFFocused)
+                )
+                .frame(
+                  width: Defaults.screenSize.width * 0.44
+                )
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+              }
+              .frame(height: Defaults.verifyButtonHeight)
+              .padding([.leading, .trailing], 24)
             }
             .padding(
               [.leading, .trailing],
@@ -88,5 +125,3 @@ struct VerificationView_Previews: PreviewProvider {
   }
 }
 #endif
-
-
