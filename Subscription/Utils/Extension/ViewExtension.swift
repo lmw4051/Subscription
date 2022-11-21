@@ -57,4 +57,23 @@ extension View {
         self
       }
     }
+  
+  func endEditing() {
+    UIApplication.shared.endEditing()
+  }
+  
+  func hideKeyboard() {
+    UIApplication.shared.sendAction(
+      #selector(UIResponder.resignFirstResponder),
+      to: nil,
+      from: nil,
+      for: nil
+    )
+  }
+}
+
+extension UIApplication {
+  func endEditing() {
+    sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+  }
 }

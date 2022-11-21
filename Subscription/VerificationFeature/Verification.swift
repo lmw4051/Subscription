@@ -61,6 +61,8 @@ struct VerificationView: View {
               )
               .autocapitalization(.none)
               .disableAutocorrection(true)
+              
+              VerificationButton(store: self.store, text: "Verify")              
             }
             .padding([.leading, .trailing], 24)
             
@@ -93,6 +95,14 @@ struct VerificationView: View {
                 )
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
+                
+                VerificationButton(store: self.store, text: "Verify")
+                  .frame(
+                    width: Defaults.screenSize.width * 0.11
+                  )
+                  .onTapGesture {
+                    self.endEditing()
+                  }
               }
               .frame(height: Defaults.verifyButtonHeight)
               .padding([.leading, .trailing], 24)
@@ -107,6 +117,9 @@ struct VerificationView: View {
       }
       .background(.black)
       .preferredColorScheme(.dark)
+    }
+    .onTapGesture {
+      self.endEditing()
     }
   }
 }
